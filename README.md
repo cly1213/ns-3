@@ -4,9 +4,7 @@ Following:
 
 https://www.nsnam.org/docs/release/3.30/tutorial/html/getting-started.html#downloading-ns-3-using-git
 
-## ubuntu 18.04
-
-## ns-3.30 version
+## ns-3.30 installation in Ubuntu 18.04
 
 ### Install ns-3 visualization
 
