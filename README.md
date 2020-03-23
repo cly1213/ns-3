@@ -6,9 +6,9 @@ https://www.nsnam.org/docs/release/3.30/tutorial/html/getting-started.html#downl
 
 ## ubuntu 18.04
 
-## ns-3.30
+## ns-3.30 version
 
-### Install NS-3 visualization
+### Install ns-3 visualization
 
 As For Ubuntu 18.04, python-pygoocanvas is no longer provided. The ns-3.29 release and later upgrades the support to GTK+ version 3, and requires these packages:
 
@@ -21,4 +21,6 @@ sudo apt-get install gir1.2-goocanvas-2.0 python-gi python-gi-cairo python-pygra
 ```=bash
 ./waf --pyrun src/flow-monitor/examples/wifi-olsr-flowmon.py --visualize
 ```
+![image](https://github.com/cly1213/ns-3/blob/master/test.png)
 
+## Congratulations! You are now an ns-3 user!
