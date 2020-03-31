@@ -1,6 +1,6 @@
 # myfirst
 
-```bash
+```c
 Device = Helper.Install(Node);
 /* 生成網卡
     Device是網卡
