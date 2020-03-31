@@ -41,23 +41,29 @@ int main (int argc, char *argv[])
   
   //add
   NS_LOG_INFO ("Creating Topology");
-
+  
+  //建立節點
   NodeContainer nodes;
   nodes.Create (2);
-
+  
+  //建P2P類型的link，並配置link屬性
   PointToPointHelper pointToPoint;
   pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
   pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
-
+  
+  //安裝link，生成網卡
   NetDeviceContainer devices;
   devices = pointToPoint.Install (nodes);
-
+  
+  //安裝協定protocol
   InternetStackHelper stack;
   stack.Install (nodes);
-
+  
+  //配置網卡IP
   Ipv4AddressHelper address;
   address.SetBase ("10.1.1.0", "255.255.255.0");
-
+  
+  //生成網路接口端口
   Ipv4InterfaceContainer interfaces = address.Assign (devices);
 
   UdpEchoServerHelper echoServer (9);
@@ -65,7 +71,8 @@ int main (int argc, char *argv[])
   ApplicationContainer serverApps = echoServer.Install (nodes.Get (1));
   serverApps.Start (Seconds (1.0));
   serverApps.Stop (Seconds (10.0));
-
+  
+  //配置應用application
   UdpEchoClientHelper echoClient (interfaces.GetAddress (1), 9);
   
   //add
@@ -85,7 +92,8 @@ int main (int argc, char *argv[])
   
   //add
   pointToPoint.EnablePcapAll ("myfirst");
-
+  
+  // start simulation
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
