@@ -21,7 +21,7 @@ Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
     用拓撲幫助構建路由
 */
 ```
-## P2P nework
+## P2P network
 
 ```c
 NodeContainer c;
@@ -61,7 +61,7 @@ xxx = address.Assign (d0d1d2d3);
 
 Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 ```
-## Wireless newwork
+## Wireless network
 
 ```c
 NodeContainer c;
