@@ -21,7 +21,7 @@ Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
     用拓撲幫助構建路由
 */
 ```
-P2P nework
+## P2P nework
 
 ```c
 NodeContainer c;
@@ -41,7 +41,7 @@ xxx = address.Assign (d0d1);
 
 Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 ```
-Ethernet network
+## Ethernet network
 
 ```c
 NodeContainer c;
@@ -61,7 +61,7 @@ xxx = address.Assign (d0d1d2d3);
 
 Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 ```
-Wireless newwork
+## Wireless newwork
 
 ```c
 NodeContainer c;
@@ -97,3 +97,44 @@ address.Assign (staDevices);
 address.Assign (apDevices);
 ```
 
+## UdpClient，UdpServer
+所有應用程序要分別用apps.Start(), apps.Stop()設置應用的啟動停止時間，注意server要比client端先啟動
+
+在一個節點上安裝udpserver
+```c
+NodeContainer c;
+c.create(2);
+...
+...
+uint16_t port = 4000;
+UdpServerHelper server (port);
+ApplicationContainer apps = server.Install (c.Get (1));
+apps.Start (Seconds (1.0));
+apps.Stop (Seconds (10.0));
+```
+在一個節點上安裝udpclient
+
+```c
+UdpClientHelper client (serverAddress, port);//綁定server地址，地址用interface.GetAddress方法獲取
+
+client.SetAttribute ("MaxPackets", UintegerValue (320));//發送多少個封包
+client.SetAttribute ("Interval", TimeValue (0.05)); //發送間隔
+client.SetAttribute ("PacketSize", UintegerValue (1024)); //封包大小
+
+apps = client.Install (n.Get (0)); //安裝到哪個節點
+apps.Start (Seconds (2.0));
+apps.Stop (Seconds (10.0));
+```
+## Mobility model
+
+設定初始位置
+
+```c
+obility.SetPositionAllocator ("ns3::GridPositionAllocator",
+                                 "MinX", DoubleValue (-100.0),
+                                 "MinY", DoubleValue (-100.0),
+                                 "DeltaX", DoubleValue (5.0),
+                                 "DeltaY", DoubleValue (20.0),
+                                 "GridWidth", UintegerValue (20),
+                                 "LayoutType", StringValue ("RowFirst"));
+```
