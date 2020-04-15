@@ -19,6 +19,6 @@ sudo apt-get install gir1.2-goocanvas-2.0 python-gi python-gi-cairo python-pygra
 ```=bash
 ./waf --pyrun src/flow-monitor/examples/wifi-olsr-flowmon.py --visualize
 ```
-<img src="https://github.com/cly1213/ns-3/blob/master/test.gif"/>
+<img src="https://github.com/cly1213/ns-3/blob/master/test.png"/>
 
 ## Congratulations! You are now an ns-3 user!
