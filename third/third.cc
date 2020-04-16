@@ -24,6 +24,9 @@
 #include "ns3/yans-wifi-helper.h"
 #include "ns3/ssid.h"
 
+//add 
+#include "ns3/netanim-module.h"
+
 // Default Network Topology
 //
 //   Wifi 10.1.3.0
@@ -171,8 +174,7 @@ int main (int argc, char *argv[])
   echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
   echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
-  ApplicationContainer clientApps = 
-    echoClient.Install (wifiStaNodes.Get (nWifi - 1));
+  ApplicationContainer clientApps = echoClient.Install (wifiStaNodes.Get (nWifi - 1));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
@@ -189,11 +191,12 @@ int main (int argc, char *argv[])
 
   //add
   std::ostringstream oss;
-  oss <<
-    "/NodeList/" << wifiStaNodes.Get (nWifi - 1)->GetId () <<
-    "/$ns3::MobilityModel/CourseChange";
+  oss << "/NodeList/" << wifiStaNodes.Get (nWifi - 1)->GetId () << "/$ns3::MobilityModel/CourseChange";
   Config::Connect (oss.str (), MakeCallback (&CourseChange)); // 連接 trace source 和 sink
 
+  //add 
+  AnimationInterface anim("third.xml");
+  
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
