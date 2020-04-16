@@ -5,6 +5,7 @@
 or
 
 ```bash
+./waf --run scratch/third
 cd netanim-3.018
 ./NetAnim
 ```
