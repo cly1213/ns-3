@@ -79,14 +79,17 @@ int main (int argc, char *argv[])
       LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
       LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
     }
-
+  
+  //創建節點
   NodeContainer p2pNodes;
   p2pNodes.Create (2);
-
+  
+  //安裝
   PointToPointHelper pointToPoint;
   pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
   pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
-
+  
+  //安裝網卡
   NetDeviceContainer p2pDevices;
   p2pDevices = pointToPoint.Install (p2pNodes);
 
